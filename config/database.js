@@ -8,7 +8,8 @@ const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
+    database: process.env.DB_DATABASE,
+    timeout: 60000, // Set the timeout to 60 seconds
 });
 
 connection.connect((err) => {
@@ -29,5 +30,5 @@ connection.on('error', function(err) {
       connection = connectToDatabase(); // Reconnect on lost connection
     }
   });
-  
+
 module.exports = connection;
